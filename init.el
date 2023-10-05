@@ -26,6 +26,10 @@
   :hook (after-init . yas-global-mode))
 (use-package yasnippet-snippets
   :ensure t)
+(use-package zenburn-theme
+  :ensure t
+  :config
+  (load-theme 'zenburn t))
 
 ; Set global modes and variables
 (menu-bar-mode 0)
@@ -55,7 +59,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages '(yasnippet-snippets yasnippet magit use-package)))
+ '(package-selected-packages
+   '(zenburn-theme yasnippet-snippets yasnippet magit use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
