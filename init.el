@@ -20,14 +20,21 @@
   :hook (after-init . global-company-mode))
 (use-package go-mode
   :ensure t)
+; quirk with installing lsp-mode
 (use-package lsp-mode
   :hook (go-mode . lsp)
   :commands lsp)
 (use-package magit
-  :ensure t)
+  :ensure t
+  :bind (("C-x g" . magit-status)))
 (use-package yasnippet
   :ensure t ; Ensure that the package is installed
   :hook (after-init . yas-global-mode))
+(use-package which-key
+  :ensure t
+  :config
+  (which-key-mode)
+  (setq which-key-idle-delay 1.0))
 (use-package yasnippet-snippets
   :ensure t)
 (use-package zenburn-theme
