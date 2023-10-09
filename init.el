@@ -20,10 +20,20 @@
   :hook (after-init . global-company-mode))
 (use-package go-mode
   :ensure t)
-; quirk with installing lsp-mode
+; quirk with installing lsp-mode,
+; you might have to install it manually using package-install.
 (use-package lsp-mode
-  :hook (go-mode . lsp)
+  :init
+  ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
+  (setq lsp-keymap-prefix "C-c l")
+  :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
+         (go-mode . lsp)
+         ;; if you want which-key integration
+         (lsp-mode . lsp-enable-which-key-integration))
   :commands lsp)
+(setq lsp-go-analyses '((shadow . t)
+                        (simplifycompositelit . :json-false)))
+(use-package lsp-ui :commands lsp-ui-mode)
 (use-package magit
   :ensure t
   :bind (("C-x g" . magit-status)))
