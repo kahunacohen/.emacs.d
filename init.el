@@ -19,7 +19,10 @@
   :ensure t
   :hook (after-init . global-company-mode))
 (use-package go-mode
-  :ensure t)
+  :ensure t
+  :hook
+  (before-save . lsp-format-buffer) ; Run lsp-format-buffer before saving Go files
+  )
 ; quirk with installing lsp-mode,
 ; you might have to install it manually using package-install.
 (use-package lsp-mode
@@ -34,6 +37,10 @@
 (setq lsp-go-analyses '((shadow . t)
                         (simplifycompositelit . :json-false)))
 (use-package lsp-ui :commands lsp-ui-mode)
+(use-package projectile
+  :ensure t
+  :config
+  (projectile-mode 1))
 (use-package magit
   :ensure t
   :bind (("C-x g" . magit-status)))
